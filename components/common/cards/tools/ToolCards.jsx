@@ -12,7 +12,7 @@ return (
 <Image source={item.image} style={styles.itemImage} />
 <Text style={styles.itemName}>{item.name}</Text>
 <Text style={styles.itemDescription}>{item.description}</Text>
-<Text style={styles.itemPrice}>${item.price}</Text>
+<Text style={styles.itemPrice}>₹{item.price}</Text>
 </View>
 </View>
 </View>
