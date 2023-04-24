@@ -19,14 +19,14 @@ const styles = StyleSheet.create({
       height: "70%",
     },
     itemName: {
-      fontFamily: FONT.bold,
-      fontSize: SIZES.medium,
-      marginBottom: 5,
+      fontWeight: "bold",
+      fontSize: 25,
+      marginBottom: 10,
     },
     itemDescription: {
       fontFamily: FONT.regular,
       fontSize: SIZES.small,
-      marginBottom: 5,
+      marginBottom:10,
     },
     itemPrice: {
       fontFamily: FONT.medium,
@@ -39,6 +39,19 @@ const styles = StyleSheet.create({
       marginRight: 10,
       marginBottom: 10,
       borderRadius: 10,
+    },
+    buyButton: {
+      backgroundColor: '#FFC107',
+      paddingVertical: 10,
+      paddingHorizontal: 10,
+      borderRadius: 5,
+      marginLeft: 280,
+      marginRight:0,
+    },
+    buyButtonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: 'bold',
     },
   });
 

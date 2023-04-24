@@ -13,50 +13,50 @@ const Home = () => {
 
     const item1 = {
         name: 'Tractor',
-        description: 'A powerful vehicle designed to provide high traction and pulling force to haul heavy loads or operate various farming implements. Typically equipped with large, rugged tires or tracks, a sturdy chassis, and a powerful engine, tractors are widely used in agriculture, construction, forestry, and other industries that require heavy-duty machinery.',
-        price: 10.99,
+        description: 'A powerful vehicle designed to provide high traction and pulling force to haul heavy loads or operate various farming implements.',
+        price: "2,75,000",
         image: images.Tractor,
     }
 
     const item2 = {
         name: 'Plows',
         description: 'Farming tool used for turning over soil and preparing fields for planting.',
-        price: 9.99,
+        price: "1,25,000",
         image: images.Plows,
     };
 
     const item3 = {
         name: 'Irrigation systems',
         description: 'Farming system that delivers water to crops or pastures using pipes, sprinklers, or other methods, to supplement natural rainfall and ensure plant growth.',
-        price: 9.99,
+        price: "3,50,500",
         image: images.Irrigation,
     };
 
     const item4 = {
         name: 'Cultivators',
         description: 'Farming implement used to remove weeds and loosen soil around growing crops.',
-        price: 9.99,
+        price: "4,75,500",
         image: images.Cultivators,
     };
 
     const item5 = {
         name: 'Seed drills',
         description: 'Farming machine that sows seeds in evenly spaced rows and at the appropriate depth.',
-        price: 9.99,
+        price: "1,25,000",
         image: images.Seed,
     };
 
     const item6 = {
         name: 'Harrows',
         description: 'Farming implement used for breaking up and smoothing soil after plowing, or for covering seeds after planting.',
-        price: 9.99,
+        price: "5,00,750",
         image: images.Harrows,
     };
 
     const item7 = {
         name: 'Fertilizers',
         description: 'Farming equipment used to evenly distribute fertilizer or other soil amendments over a field or garden.',
-        price: 9.99,
+        price: "3,500",
         image: images.Fertilizers,
     };
 
@@ -73,7 +73,9 @@ const Home = () => {
                     margin: SIZES.large,
                 }}>
                     <Text style={{
-                    fontSize: SIZES.large,
+                        fontWeight: "bold",
+                    fontSize: 35,
+                    color: "#415a2c",
                     padding: 10,
                 }}>Farming Products</Text>
                     <Card item={item1} />
