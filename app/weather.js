@@ -77,7 +77,7 @@ const Weather = () => {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: '#F6F6F6',
+    backgroundColor: '#cdccc1',
     padding: 20,
   },
   searchBar: {

@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, View, Image, Text } from 'react-native';
+
+import { images } from "../../../constants";
 
 const Header = () => {
   return (
     <View style={styles.header}>
-      <Ionicons name="menu-outline" size={24} color="black" />
-      <Ionicons name="person-outline" size={24} color="black" />
+      <Text style={styles.HeaderText}>Hello Sanika!</Text>
+      <Image source={ images.profile } style={styles.profileImage}/>
     </View>
   );
 };
@@ -21,6 +22,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: 'gray',
+  },
+  profileImage: {
+    width: 35,
+    height: 35,
+    borderRadius: 6,
+  },
+  HeaderText: {
+    fontSize: 20,
   },
 });
 
