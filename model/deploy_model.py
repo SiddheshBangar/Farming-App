@@ -7,7 +7,7 @@ app = Flask(__name__)
 with open('RandomForest.pkl', 'rb') as f:
     model = pickle.load(f)
 
-@app.route('/api', methods=['POST', 'GET'])
+@app.route('/predict_crop', methods=['POST', 'GET'])
 
 def predict_crop():
     data = request.get_json()

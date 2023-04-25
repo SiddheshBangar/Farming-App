@@ -17,7 +17,8 @@ const Model = () => {
 
     const predictCrop = async () => {
         try {
-            const response = await axios.post('http://127.0.0.1:5000/api', {
+            console.log("Working!");
+            const response = await axios.post('http://127.0.0.1:5000/predict_model', {
                 n: n,
                 p: p,
                 k: k,
