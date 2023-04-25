@@ -1,16 +1,28 @@
 import pickle
+import math
+import json
+
 from flask import Flask, request, jsonify
+from flask_cors import cross_origin, CORS
+import logging
+
+logging.getLogger('flask_cors').level = logging.DEBUG
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000"])
 
 # Load the trained model
 with open('RandomForest.pkl', 'rb') as f:
     model = pickle.load(f)
 
-@app.route('/predict_crop', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
+@cross_origin()
 
 def predict_crop():
-    data = request.get_json()
+    data = request.json
+
+    print(data)
+
     input_data = [
         float(data['n']),
         float(data['p']),
@@ -20,17 +32,11 @@ def predict_crop():
         float(data['ph']),
         float(data['rainfall'])
     ]
-    print(input_data)
 
     # Make a prediction using the loaded model
     prediction = model.predict([input_data])[0]
     
-    # Convert the predicted label to a crop name
-    crop_names = ['rice', 'wheat', 'maize']
-    predicted_crop = crop_names[prediction]
-    response = {'crop': predicted_crop}
-    
-    print(response)
+    response = {'crop': prediction}
     return jsonify(response)
 
 if __name__ == '__main__':

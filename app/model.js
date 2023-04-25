@@ -18,20 +18,28 @@ const Model = () => {
     const predictCrop = async () => {
         try {
             console.log("Working!");
-            const response = await axios.post('http://127.0.0.1:5000/predict_model', {
-                n: n,
-                p: p,
-                k: k,
-                temperature: temperature,
-                humidity: humidity,
-                ph: ph,
-                rainfall: rainfall
+            
+            let response = await axios.post('http://127.0.0.1:5000', {
+                "n": n,
+                "p": p,
+                "k": k,
+                "temperature": temperature,
+                "humidity": humidity,
+                "ph": ph,
+                "rainfall": rainfall,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
-            setResult(response.data.crop);
+
+            console.log(response);
+
+            setResult(response.data.prediction);
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -86,6 +94,6 @@ const Model = () => {
             </View>
         </ScrollView>
     );
-}
+};
 
 export default Model;
