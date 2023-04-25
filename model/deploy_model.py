@@ -1,44 +1,37 @@
-from flask import Flask, request, jsonify
-import numpy as np
 import pickle
-import joblib
-import pandas as pd
-import traceback
-
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/predict', methods=['GET', 'POST'])
-def predict():
-    if model:
-        try:
-            json_ = request.json
-            print(json_)
+# Load the trained model
+with open('RandomForest.pkl', 'rb') as f:
+    model = pickle.load(f)
 
-            query = pd.get_dummies(pd.DataFrame(json_))
-            query = query.reindex(columns=model_columns, fill_value=0)
+@app.route('/api', methods=['POST', 'GET'])
 
-            prediction = list(model.predict(query))
+def predict_crop():
+    data = request.get_json()
+    input_data = [
+        float(data['n']),
+        float(data['p']),
+        float(data['k']),
+        float(data['temperature']),
+        float(data['humidity']),
+        float(data['ph']),
+        float(data['rainfall'])
+    ]
+    print(input_data)
 
-            return jsonify({'prediction': str(prediction)})
-        
-        except:
-
-            return jsonify({'trace': traceback.format_exc()})
+    # Make a prediction using the loaded model
+    prediction = model.predict([input_data])[0]
     
-    else:
-        print('Train the model first')
-        return ('No Model here to use')
+    # Convert the predicted label to a crop name
+    crop_names = ['rice', 'wheat', 'maize']
+    predicted_crop = crop_names[prediction]
+    response = {'crop': predicted_crop}
+    
+    print(response)
+    return jsonify(response)
 
 if __name__ == '__main__':
-    try:
-        port = int(sys.argv[1]) # This is for a command-line input
-    except:
-        port = 12345 # If you don't provide any port the port will be set to 12345
-
-    model = joblib.load("RandomForest.pkl") # Load "model.pkl"
-    print ('Model loaded')
-    model_columns = joblib.load("model_columns.pkl") # Load "model_columns.pkl"
-    print ('Model columns loaded')
-
-    app.run(port=port, debug=True)
+    app.run(debug=True)
