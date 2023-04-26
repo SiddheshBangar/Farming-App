@@ -9,7 +9,7 @@ import logging
 logging.getLogger('flask_cors').level = logging.DEBUG
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000"])
+CORS(app)
 
 # Load the trained model
 with open('RandomForest.pkl', 'rb') as f:
@@ -20,8 +20,6 @@ with open('RandomForest.pkl', 'rb') as f:
 
 def predict_crop():
     data = request.json
-
-    print(data)
 
     input_data = [
         float(data['n']),
@@ -34,7 +32,7 @@ def predict_crop():
     ]
 
     # Make a prediction using the loaded model
-    prediction = model.predict([input_data])[0]
+    prediction = model.predict([input_data])[0].capitalize()
     
     response = {'crop': prediction}
     return jsonify(response)
